@@ -1,0 +1,140 @@
+<html>  
+  <head>
+    <title>Listify</title>
+    <link rel="stylesheet" type="text/css" href="dark.css" />
+  </head>
+  <body>
+    <center>
+      <h1>Listify</h1>
+      <fieldset>
+        <legend align="center">Create a Task</legend>
+        Enter Task Name:
+        <input type="text" id="taskname" /><br /><br />
+        Enter Task Completion Time:
+        <input type="time" id="tasktime" /><br /><br />
+        Enter Task Priority:
+        <select id="taskprio">
+          <option>High Priority</option>
+          <option>Intermediate Priority</option>
+          <option>Low Priority</option></select
+        ><br /><br />
+        Enter Task Status:
+        <select id="taskstat">
+          <option>Incomplete</option>
+          <option>Completing</option>
+          <option>Completed</option></select
+        ><br /><br />
+        <input
+          type="button"
+          id="tasksub"
+          onclick="sub()"
+          value="Submit Task"
+        /><br />
+      </fieldset>
+      <p id="list"></p>
+
+      <table cellpadding = "100"  border="1">
+        <tr>
+          <th>Task Name</th>
+          <th>Task Completion Time</th>
+          <th>Task Priority</th>
+          <th>Task Status</th>
+        </tr>
+        <tr>
+          <td id = "tn"></td>
+          <td id = "tt"></td>
+          <td id = "tp"></td>
+          <td id = "ts"></td>
+        </tr>
+      </table>
+
+    </center>
+    <script>
+      const tasks = [];
+      const time = [];
+      const priority = [];
+      const status = [];
+
+      const tpriority = [];
+      function sub() {
+        var taskname = document.getElementById("taskname").value;
+        var tasktime = document.getElementById("tasktime").value;
+        var taskprio = document.getElementById("taskprio").value;
+        var taskstat = document.getElementById("taskstat").value;
+        var taskpn;
+
+        if(taskprio === "High Priority"){
+          taskpn = 1
+        }
+        else if(taskprio === "Intermediate Priority"){
+          taskpn = 2
+        }
+        else if(taskprio === "Low Priority"){
+          taskpn = 3
+        }
+
+        tasks.push(taskname);
+        time.push(tasktime);
+        priority.push(taskprio);
+        status.push(taskstat);
+        tpriority.push(taskpn);
+
+        for(var i = 0;i<tasks.length;i++){
+            for(var j = i+1;j<tasks.length;j++){
+            if(tpriority[i]>tpriority[j]){
+              var a = tasks[j];
+              tasks[j] = tasks[i]
+              tasks[i] = a;
+
+              var a = time[j];
+              time[j] = time[i]
+              time[i] = a;
+
+              var a = priority[j];
+              priority[j] = priority[i]
+              priority[i] = a;
+
+              var a = status[j];
+              status[j] = status[i]
+              status[i] = a;
+
+              var a = tpriority[j];
+              tpriority[j] = tpriority[i];
+              tpriority[i] = a;
+
+            }
+            }
+          }
+
+          document.getElementById("list").innerHTML = tasks+"-"+tpriority;
+
+        var final_task_name = "";
+        var final_task_time = "";
+        var final_task_priority = "";
+        var final_task_status = "";
+
+        var len = tasks.length
+        for(var i = 0;i<len;i++){
+          var temp1 = tasks[i];
+          final_task_name = final_task_name+"<br>"+"<br>"+"<br>"+temp1;
+
+          var temp2 = time[i];
+          final_task_time = final_task_time+"<br>"+"<br>"+"<br>"+temp2;
+
+          var temp3 = priority[i];
+          final_task_priority = final_task_priority+"<br>"+"<br>"+"<br>"+temp3;
+
+          var temp4 = status[i];
+          final_task_status = final_task_status+"<br>"+"<br>"+"<br>"+temp4;
+
+        }
+        document.getElementById("tn").innerHTML = final_task_name
+        document.getElementById("tt").innerHTML = final_task_time
+        document.getElementById("tp").innerHTML = final_task_priority
+        document.getElementById("ts").innerHTML = final_task_status
+  
+      }
+
+    </script>
+  </body>
+</html>
