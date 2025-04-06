@@ -1,0 +1,162 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #ffffff;
+    color: #121212;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+.navbar-logo {
+    width: 1200px;
+    height: 1200px;
+    object-fit: contain; 
+  }
+  
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fdfdfd;
+    color: #222;
+  }
+  
+ 
+  #navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .navbar-left img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .navbar-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #222;
+  }
+  
+  .theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: #333;
+    transition: transform 0.2s ease;
+  }
+  
+  .theme-toggle:hover {
+    transform: scale(1.1);
+  }
+  
+h1 {
+    background: linear-gradient(to right, #007bff, #00d4ff);
+    font-weight: bold;
+    color:white
+}
+
+fieldset {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 20px;
+    width: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #007bff;
+}
+
+input[type="text"],
+input[type="time"],
+select {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-size: 1em;
+    background-color: white;
+    color: black;
+}
+
+input[type="button"] {
+    background: linear-gradient(to right, #007bff, #00d4ff);
+    color: white;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+input[type="button"]:hover {
+    background: linear-gradient(to left, #007bff, #00d4ff);
+}
+
+#deletebtn {
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    font-size: 1em;
+    border: linear-gradient(to right, #007bff, #00d4ff);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#deletebtn:hover {
+    background: linear-gradient(to left, #007bff, #00d4ff);
+    color: white;
+}
+table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+th, td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background: linear-gradient(to right, #007bff, #00d4ff);
+    color: white;
+    font-weight: bold;
+}
+
+td {
+    background-color: #ffffff;
+    color: black;
+}
