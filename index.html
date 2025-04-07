@@ -8,24 +8,24 @@
 </head>
 
 <body>
-    <nav id="navbar">
-        <div class="navbar-left">
-            <img src="logodark.png" alt="Logo" class="navbar-logo" id="logo" width="100px" height="100px" />
-            <span class="navbar-title">Listify</span>
-        </div>
-      
-        <div class="navbar-search">
-          <input list="data" id="taskInput" placeholder="Search Task..." />
-          <datalist id="data" name="s"></datalist>
-          <button onclick="search()">🔍</button>
-        </div>
-      
-        <button id="themeToggle" class="theme-toggle">🌓</button>
-      </nav>
-      
-      
+  <nav id="navbar">
+    <div class="navbar-left">
+      <img src="logodark.png" alt="Logo" class="navbar-logo" id="logo" width="100px" height="100px" />
+      <span class="navbar-title">Listify</span>
+    </div>
+
+    <div class="navbar-search">
+      <input list="data" id="taskInput" placeholder="Search Task..." />
+      <datalist id="data" name="s"></datalist>
+      <button onclick="search()">🔍</button>
+    </div>
+
+    <button id="themeToggle" class="theme-toggle">🌓</button>
+  </nav>
+
+
   <center>
-    
+
     <fieldset>
       <legend align="center">Create a Task</legend>
       Enter Task Name:
@@ -47,12 +47,12 @@
         <option>Completed</option>
       </select><br /><br />
       Enter Task Description:
-      <textarea id = "taskdesc"></textarea><br /><br />
+      <textarea id="taskdesc"></textarea><br /><br />
       <input type="button" id="tasksub" onclick="sub()" value="Submit Task" /><br />
     </fieldset>
 
 
-   
+
 
 
     <table cellpadding="100" border="1">
@@ -61,7 +61,7 @@
         <th>Task Due Date</th>
         <th>Task Deadline</th>
         <th>Task Priority</th>
-        <th>Task Status</th>
+        <th>Edit</th>
         <th>Delete</th>
       </tr>
       <tbody id="body"></tbody>
@@ -166,7 +166,7 @@
       var body = document.getElementById("body");
       body.innerHTML = "";
 
-      for (var i = 0; i < tasks.length; i++) {
+      for (let i = 0; i < tasks.length; i++) {
         var row = document.createElement("tr");
 
         var cell1 = document.createElement("td");
@@ -186,14 +186,41 @@
         row.appendChild(cell4);
 
         var cell5 = document.createElement("td");
-        cell5.innerHTML = status[i];
+        
+        const dropdown = document.createElement("select");
+
+        const options = [
+          { value: "Incomplete", text: "Incomplete", id: "incomplete" },
+          { value: "Completing", text: "Completing", id: "completing" },
+          { value: "Completed", text: "Completed", id: "completed" }
+        ];
+
+        for (const opt of options) {
+          const option = document.createElement("option");
+          option.value = opt.value;
+          option.textContent = opt.text;
+          option.id = opt.id;
+
+          if (status[i] === opt.text) {
+            option.selected = true;
+          }
+
+          dropdown.appendChild(option);
+        }
+
+        dropdown.onchange = function () {
+          stachan(i, dropdown);
+        };
+
+        cell5.appendChild(dropdown);
         row.appendChild(cell5);
+
 
         var cell6 = document.createElement("td");
         var btn = document.createElement("button");
         btn.innerHTML = "Delete";
         btn.setAttribute("onclick", "deleteTask(" + i + ")");
-        
+
         cell6.appendChild(btn);
         row.appendChild(cell6);
 
@@ -201,7 +228,7 @@
         var btn = document.createElement("button");
         btn.innerHTML = "View";
         btn.setAttribute("onclick", "viewTask(" + i + ")");*/
-        
+
         //cell7.appendChild(btn);
         //row.appendChild(cell7);
 
@@ -220,64 +247,77 @@
     }
 
     function search() {
-  const input = document.getElementById("taskInput").value;
-  const index = tasks.indexOf(input);
-  if (index !== -1) {
-    var win = window.open('', "_blank", "height=500,width=500");
-    var doc = win.document;
-    var tn = doc.createElement("h1");
-    tn.innerHTML = "Task Name: " + tasks[index];
-    var td = doc.createElement("h1");
-    td.innerHTML = "Task Due Date: " + date[index];
-    var tt = doc.createElement("h1");
-    tt.innerHTML = "Task Deadline: " + time[index];
-    var tp = doc.createElement("h1");
-    tp.innerHTML = "Task Priority: " + priority[index];
-    var ts = doc.createElement("h1");
-    ts.innerHTML = "Task Status: " + status[index];
-    var tde = doc.createElement("h1");
-    tde.innerHTML = "Task Description: " + description[index];
+      const input = document.getElementById("taskInput").value;
+      const index = tasks.indexOf(input);
+      if (index !== -1) {
+        var win = window.open('', "_blank", "height=500,width=500");
+        var doc = win.document;
+        var tn = doc.createElement("h1");
+        tn.innerHTML = "Task Name: " + tasks[index];
+        var td = doc.createElement("h1");
+        td.innerHTML = "Task Due Date: " + date[index];
+        var tt = doc.createElement("h1");
+        tt.innerHTML = "Task Deadline: " + time[index];
+        var tp = doc.createElement("h1");
+        tp.innerHTML = "Task Priority: " + priority[index];
+        var ts = doc.createElement("h1");
+        ts.innerHTML = "Task Status: " + status[index];
+        var tde = doc.createElement("h1");
+        tde.innerHTML = "Task Description: " + description[index];
 
-    doc.body.appendChild(tn);
-    doc.body.appendChild(td);
-    doc.body.appendChild(tt);
-    doc.body.appendChild(tp);
-    doc.body.appendChild(ts);
-    doc.body.appendChild(tde);
-  }
-}
-
-
-  
-  </script>
-  <script>
-  const themeToggle = document.getElementById("themeToggle");
-  const themeStylesheet = document.getElementById("themeStylesheet");
-  const logo = document.getElementById("logo");
-
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme) {
-    themeStylesheet.href = savedTheme;
-    themeToggle.textContent = savedTheme.includes("dark") ? "🌙" : "☀️";
-    logo.src = savedTheme.includes("dark") ? "logodark.png" : "logolight.png";
-  }
-
-  themeToggle.addEventListener("click", () => {
-    if (themeStylesheet.href.includes("dark.css")) {
-      themeStylesheet.href = "light.css";
-      themeToggle.textContent = "☀️";
-      localStorage.setItem("theme", "light.css");
-      logo.src = "logolight.png";
-    } else {
-      themeStylesheet.href = "dark.css";
-      themeToggle.textContent = "🌙";
-      localStorage.setItem("theme", "dark.css");
-      logo.src = "logodark.png";
+        doc.body.appendChild(tn);
+        doc.body.appendChild(td);
+        doc.body.appendChild(tt);
+        doc.body.appendChild(tp);
+        doc.body.appendChild(ts);
+        doc.body.appendChild(tde);
+      }
     }
-  });
-</script>
+    function stachan(index, dropdown) {
+      const selected = dropdown.options[dropdown.selectedIndex];
+      const newStatus = selected.text;
 
-  
+
+      status[index] = newStatus;
+
+      if (selected.id === "completed") {
+        const confirmDelete = confirm("Task is marked completed. Delete it?");
+        if (confirmDelete) {
+          deleteTask(index);
+        } else {
+          updateTable();
+        }
+      } 
+      updateTable();
+    }
+
+    const themeToggle = document.getElementById("themeToggle");
+    const themeStylesheet = document.getElementById("themeStylesheet");
+    const logo = document.getElementById("logo");
+
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      themeStylesheet.href = savedTheme;
+      themeToggle.textContent = savedTheme.includes("dark") ? "🌙" : "☀️";
+      logo.src = savedTheme.includes("dark") ? "logodark.png" : "logolight.png";
+    }
+
+    themeToggle.addEventListener("click", () => {
+      if (themeStylesheet.href.includes("dark.css")) {
+        themeStylesheet.href = "light.css";
+        themeToggle.textContent = "☀️";
+        localStorage.setItem("theme", "light.css");
+        logo.src = "logolight.png";
+      } else {
+        themeStylesheet.href = "dark.css";
+        themeToggle.textContent = "🌙";
+        localStorage.setItem("theme", "dark.css");
+        logo.src = "logodark.png";
+      }
+    });
+  </script>
+
+
 </body>
 
 </html>
