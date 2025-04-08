@@ -4,13 +4,12 @@
   <title>Listify</title>
   <link rel="stylesheet" type="text/css" id="themeStylesheet" href="dark.css" />
   <link rel="icon" type="image/x-icon" href="logodark.png">
-
 </head>
 
 <body>
   <nav id="navbar">
     <div class="navbar-left">
-      <img src="logodark.png" alt="Logo" class="navbar-logo" id="logo" width="100px" height="100px" />
+      <img src="logodark.png" alt="Logo" class="navbar-logo" id="logo" />
       <span class="navbar-title">Listify</span>
     </div>
 
@@ -23,37 +22,29 @@
     <button id="themeToggle" class="theme-toggle">🌓</button>
   </nav>
 
-
   <center>
-
     <fieldset>
       <legend align="center">Create a Task</legend>
-      Enter Task Name:
+      <label>Enter Task Name:</label><br />
       <input type="text" id="taskname" /><br /><br />
-      Enter Task Due Date:
+      <label>Enter Task Due Date:</label><br />
       <input type="time" id="tasktime" /><br /><br />
-      Enter Task Deadline:
+      <label>Enter Task Deadline:</label><br />
       <input type="date" id="taskdate" /><br /><br />
-      Enter Task Priority:
+      <label>Enter Task Priority:</label><br />
       <select id="taskprio">
         <option>High Priority</option>
         <option>Intermediate Priority</option>
         <option>Low Priority</option>
       </select><br /><br />
-      Enter Task Status:
+      <label>Enter Task Status:</label><br />
       <select id="taskstat">
         <option>Incomplete</option>
         <option>Completing</option>
         <option>Completed</option>
       </select><br /><br />
-      Enter Task Description:
-      <textarea id="taskdesc"></textarea><br /><br />
-      <input type="button" id="tasksub" onclick="sub()" value="Submit Task" /><br />
+      <input type="button" id="tasksub" onclick="sub()" value="Submit Task" />
     </fieldset>
-
-
-
-
 
     <table cellpadding="100" border="1">
       <tr>
@@ -61,12 +52,11 @@
         <th>Task Due Date</th>
         <th>Task Deadline</th>
         <th>Task Priority</th>
-        <th>Edit</th>
+        <th>Task Status</th>
         <th>Delete</th>
       </tr>
       <tbody id="body"></tbody>
     </table>
-
   </center>
 
   <script>
@@ -81,17 +71,11 @@
     function sub() {
       var taskname = document.getElementById("taskname").value.trim();
       var tasktime = document.getElementById("tasktime").value;
-      var tasktime = document.getElementById("tasktime").value;
       var taskdate = document.getElementById("taskdate").value;
       var taskprio = document.getElementById("taskprio").value;
       var taskstat = document.getElementById("taskstat").value;
-      var taskdesc = document.getElementById("taskdesc").value;
+      var taskdesc = ""; // Removed description input usage
       var taskpn;
-
-      /*if (taskname === "" || tasktime === "") {
-        alert("Please enter both Task Name and Time.");
-        return;
-      }*/
 
       if (taskprio === "High Priority") {
         taskpn = 1;
@@ -107,57 +91,33 @@
       option.value = taskname;
       list.appendChild(option);
       time.push(tasktime);
-      date.push(taskdate)
+      date.push(taskdate);
       priority.push(taskprio);
       status.push(taskstat);
       description.push(taskdesc);
       tpriority.push(taskpn);
 
-      // Sorting tasks based on priority
       for (var i = 0; i < tasks.length; i++) {
         for (var j = i + 1; j < tasks.length; j++) {
           if (tpriority[i] > tpriority[j]) {
             var temp;
 
-            temp = tasks[i];
-            tasks[i] = tasks[j];
-            tasks[j] = temp;
-
-            temp = time[i];
-            time[i] = time[j];
-            time[j] = temp;
-
-            temp = date[i];
-            date[i] = date[j];
-            date[j] = temp;
-
-            temp = priority[i];
-            priority[i] = priority[j];
-            priority[j] = temp;
-
-            temp = status[i];
-            status[i] = status[j];
-            status[j] = temp;
-
-            temp = tpriority[i];
-            tpriority[i] = tpriority[j];
-            tpriority[j] = temp;
-
-            temp = description[i];
-            description[i] = description[j];
-            description[j] = temp;
-
+            temp = tasks[i]; tasks[i] = tasks[j]; tasks[j] = temp;
+            temp = time[i]; time[i] = time[j]; time[j] = temp;
+            temp = date[i]; date[i] = date[j]; date[j] = temp;
+            temp = priority[i]; priority[i] = priority[j]; priority[j] = temp;
+            temp = status[i]; status[i] = status[j]; status[j] = temp;
+            temp = tpriority[i]; tpriority[i] = tpriority[j]; tpriority[j] = temp;
+            temp = description[i]; description[i] = description[j]; description[j] = temp;
           }
         }
       }
 
       document.getElementById("taskname").value = "";
       document.getElementById("tasktime").value = "";
-      document.getElementById("tasktime").value = "";
       document.getElementById("taskdate").value = "";
       document.getElementById("taskprio").value = "High Priority";
       document.getElementById("taskstat").value = "Incomplete";
-      document.getElementById("taskdesc").value = "";
 
       updateTable();
     }
@@ -186,9 +146,7 @@
         row.appendChild(cell4);
 
         var cell5 = document.createElement("td");
-        
         const dropdown = document.createElement("select");
-
         const options = [
           { value: "Incomplete", text: "Incomplete", id: "incomplete" },
           { value: "Completing", text: "Completing", id: "completing" },
@@ -200,11 +158,7 @@
           option.value = opt.value;
           option.textContent = opt.text;
           option.id = opt.id;
-
-          if (status[i] === opt.text) {
-            option.selected = true;
-          }
-
+          if (status[i] === opt.text) option.selected = true;
           dropdown.appendChild(option);
         }
 
@@ -215,22 +169,13 @@
         cell5.appendChild(dropdown);
         row.appendChild(cell5);
 
-
         var cell6 = document.createElement("td");
         var btn = document.createElement("button");
         btn.innerHTML = "Delete";
+        btn.id = "deletebtn";
         btn.setAttribute("onclick", "deleteTask(" + i + ")");
-
         cell6.appendChild(btn);
         row.appendChild(cell6);
-
-        /*var cell7 = document.createElement("td");
-        var btn = document.createElement("button");
-        btn.innerHTML = "View";
-        btn.setAttribute("onclick", "viewTask(" + i + ")");*/
-
-        //cell7.appendChild(btn);
-        //row.appendChild(cell7);
 
         body.appendChild(row);
       }
@@ -242,6 +187,7 @@
       time.splice(index, 1);
       priority.splice(index, 1);
       status.splice(index, 1);
+      description.splice(index, 1);
       tpriority.splice(index, 1);
       updateTable();
     }
@@ -262,24 +208,19 @@
         tp.innerHTML = "Task Priority: " + priority[index];
         var ts = doc.createElement("h1");
         ts.innerHTML = "Task Status: " + status[index];
-        var tde = doc.createElement("h1");
-        tde.innerHTML = "Task Description: " + description[index];
 
         doc.body.appendChild(tn);
         doc.body.appendChild(td);
         doc.body.appendChild(tt);
         doc.body.appendChild(tp);
         doc.body.appendChild(ts);
-        doc.body.appendChild(tde);
       }
     }
+
     function stachan(index, dropdown) {
       const selected = dropdown.options[dropdown.selectedIndex];
       const newStatus = selected.text;
-
-
       status[index] = newStatus;
-
       if (selected.id === "completed") {
         const confirmDelete = confirm("Task is marked completed. Delete it?");
         if (confirmDelete) {
@@ -316,7 +257,6 @@
       }
     });
   </script>
-
 
 </body>
 
