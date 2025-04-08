@@ -246,12 +246,12 @@
     themeToggle.addEventListener("click", () => {
       if (themeStylesheet.href.includes("dark.css")) {
         themeStylesheet.href = "light.css";
-        themeToggle.textContent = "☀️";
+        themeToggle.textContent = "🌙";
         localStorage.setItem("theme", "light.css");
         logo.src = "logolight.png";
       } else {
         themeStylesheet.href = "dark.css";
-        themeToggle.textContent = "🌙";
+        themeToggle.textContent = "☀️";
         localStorage.setItem("theme", "dark.css");
         logo.src = "logodark.png";
       }
