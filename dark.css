@@ -1,92 +1,91 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: white;
-    text-align: center;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #121212;
+  color: white;
+  text-align: center;
 }
 
 #navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1e1e1e;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e1e1e;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
 }
 
 .navbar-left {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .navbar-logo {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
 }
 
 .navbar-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
 }
 
 .navbar-search input {
-    padding: 10px;
-    width: 250px;
-    border-radius: 5px;
-    border: none;
-    background-color: #2a2a2a;
-    color: white;
-    font-size: 1em;
-    margin-right: 5px;
+  padding: 10px;
+  width: 250px;
+  border-radius: 5px;
+  border: none;
+  background-color: #2a2a2a;
+  color: white;
+  font-size: 1em;
+  margin-right: 5px;
 }
 
 .navbar-search button {
-    padding: 10px 15px;
-    border: none;
-    background: linear-gradient(to right, #ff3383, #a133ff);
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: 0.3s;
+  padding: 10px 15px;
+  border: none;
+  background: linear-gradient(to right, #ff3383, #a133ff);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: 0.3s;
 }
 
 .navbar-search button:hover {
-    background: linear-gradient(to left, #ff3383, #a133ff);
+  background: linear-gradient(to left, #ff3383, #a133ff);
 }
 
 .theme-toggle {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 
 .theme-toggle:hover {
-    transform: rotate(20deg);
+  transform: rotate(20deg);
 }
 
 fieldset {
-    background-color: #1e1e1e;
-    border-radius: 10px;
-    padding: 20px;
-    width: 50%;
-    margin-top: 20px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 20px;
+  width: 50%;
+  margin-top: 20px;
 }
 
 legend {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #ff3383;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #ff3383;
 }
 
 input[type="text"],
@@ -94,73 +93,72 @@ input[type="time"],
 input[type="date"],
 select,
 textarea {
-    width: 80%;
-    padding: 10px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 5px;
-    font-size: 1em;
-    background-color: #2a2a2a;
-    color: white;
+  width: 80%;
+  padding: 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  background-color: #2a2a2a;
+  color: white;
 }
 
 textarea {
-    resize: vertical;
+  resize: vertical;
 }
 
 input[type="button"] {
-    background: linear-gradient(to right, #ff3383, #a133ff);
-    color: white;
-    padding: 10px 20px;
-    font-size: 1em;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.5s;
+  background: linear-gradient(to right, #ff3383, #a133ff);
+  color: white;
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
 input[type="button"]:hover {
-    background: linear-gradient(to left, #ff3383, #a133ff);
+  background: linear-gradient(to left, #ff3383, #a133ff);
 }
 
 button {
-    background: linear-gradient(to right, #ff3383, #a133ff);
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: 0.3s;
+  background: linear-gradient(to right, #ff3383, #a133ff);
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: 0.3s;
 }
 
 button:hover {
-    background: linear-gradient(to left, #ff3383, #a133ff);
+  background: linear-gradient(to left, #ff3383, #a133ff);
 }
 
 table {
-    width: 80%;
-    margin: 30px auto;
-    border-collapse: collapse;
-    background-color: #1e1e1e;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
+  width: 80%;
+  margin: 30px auto;
+  border-collapse: collapse;
+  background-color: #1e1e1e;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
 
 th, td {
-    padding: 15px;
-    border: 1px solid #2a2a2a;
-    text-align: center;
+  padding: 15px;
+  border: 1px solid #2a2a2a;
+  text-align: center;
 }
 
 th {
-    background: linear-gradient(to right, #a133ff, #ff3383);
-    color: white;
-    font-weight: bold;
+  background: linear-gradient(to right, #a133ff, #ff3383);
+  color: white;
+  font-weight: bold;
 }
 
 td {
-    background-color: #2a2a2a;
-    color: white;
+  background-color: #2a2a2a;
+  color: white;
 }
