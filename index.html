@@ -290,14 +290,14 @@
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
       themeStylesheet.href = savedTheme;
-      themeToggle.textContent = savedTheme.includes("dark") ? "☀️" : "🌙";
+      themeToggle.textContent = savedTheme.includes("dark") ? "☀️" : "🌒";
       logo.src = savedTheme.includes("dark") ? "logodark.png" : "logolight.png";
     }
 
     function toggleTheme() {
   if (themeStylesheet.href.includes("dark.css")) {
     themeStylesheet.href = "light.css";
-    themeToggle.textContent = "🌙";
+    themeToggle.textContent = "🌒";
     localStorage.setItem("theme", "light.css");
     logo.src = "logolight.png";
   } else {
